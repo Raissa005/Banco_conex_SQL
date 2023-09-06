@@ -184,14 +184,12 @@ public class Cliente extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       String conta =  JOptionPane.showInputDialog("INFORME SUA CONTA.");
-        String valor = JOptionPane.showInputDialog("INFORME O VALOR DA TRANSAÇÃO.");
-        String senha = JOptionPane.showInputDialog("INFORME SUA SENHA.");
-        double valorConvertido = Double.parseDouble(valor);
+       String pergunta = JOptionPane.showInputDialog("Digite o documento da conta para transferir:");
+        Conta contaTrans = contaController.buscarContaPoTitular(pergunta);
 
-      //  conta = this.contaController.transferir(this.conta, valorConvertido);
-
-    //    this.saldo.setText("R$ " + String.valueOf(conta.getSaldo()));
+        Double valor = Double.parseDouble(JOptionPane.showInputDialog("INFORME O VALOR DO SAQUE."));
+        conta = contaController.transferir(this.conta, contaTrans, valor);
+        this.saldo.setText("R$ " + String.valueOf(conta.getSaldo()));
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

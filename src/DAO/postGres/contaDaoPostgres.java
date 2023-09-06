@@ -11,6 +11,7 @@ import Models.PessoaJuridica;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.UUID;
 
 public class contaDaoPostgres implements contaDao {
@@ -95,4 +96,49 @@ public class contaDaoPostgres implements contaDao {
                 System.out.println(error);
             }
     }
+    
+    public void insereExtrato(UUID id, Date data, enum tipo, String valor, UUID id_conta){
+            String sql = "INSERT INTO transacao(id, data, tipo, valor, id_conta) VALUES (?, ?, ?, CAST(? as tipo_conta), ?, ?)";
+
+            try{
+                PreparedStatement stm = this.conexao.prepareStatement(sql);
+                stm.setObject(1, transacoes.getId());
+                stm.setInt(2, transacoes.getdata());
+                stm.setDouble(3, transacoes.getTipoTrans);
+                stm.setString(4, transacoes.getValor);
+                stm.setObject(5, transacoes.getConta_id);
+                stm.executeUpdate();
+            }catch(SQLException error) {
+                System.out.println(error);
+            }
+        }
+    
+    public void buscarExtrato() {
+       String sql = "SELECT e.id, e.data, e.tipoTrans, e.conta_id FROM extrato AS e";
+
+       try {
+           PreparedStatement stm = this.conexao.prepareStatement(sql);
+           ResultSet resultado = stm.executeQuery();
+
+                while (resultado.next()) {
+                    UUID id = (UUID) resultado.getObject("id");
+                    Date data = resultado.getDate("data");
+                    String tipoTrans = resultado.getString("tipoTrans");
+                    UUID conta_id = (UUID) resultado.getObject("conta_id");
+
+                    ArrayList<Transacao> listaTransacoes = new ArrayList();
+                    listaTransacoes.add(id);
+                    listaTransacoes.add(data);
+                    listaTransacoes.add(tipoTrans);
+                    listaTransacoes.add(conta_id);
+                }
+           
+           resultado.close();
+           stm.close();
+       } catch (SQLException error) {
+           System.out.println(error);
+       }
+ }
+
+
 }

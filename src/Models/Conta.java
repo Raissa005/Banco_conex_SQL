@@ -11,16 +11,15 @@ public class Conta {
         this.id = UUID.randomUUID();
         this.saldo = 0.0;
         this.numero = this.gerarNumeroConta();
-        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt()
-        );
+        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt() );
     }
     
     public Conta (UUID id,  int numero, double saldo, Pessoa titular, String senha){
-    this.id = id;
-    this.numero = numero;
-    this.saldo = saldo;
-    this.titular = titular;
-     this.senha = senha;
+        this.id = id;
+        this.numero = numero;
+        this.saldo = saldo;
+        this.titular = titular;
+        this.senha = senha;
 }
 
     private UUID id;

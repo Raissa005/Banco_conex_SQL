@@ -62,4 +62,8 @@ public class ContaController {
 
         return conta;
     }
+    
+    public Conta transacao(UUID id, Date, data, enum tipo, String valor, UUID id_conta){
+        
+    }
 }
