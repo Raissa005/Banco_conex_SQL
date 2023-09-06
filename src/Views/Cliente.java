@@ -209,8 +209,6 @@ public class Cliente extends javax.swing.JFrame {
         conta = contaController.transferir(this.conta, contaTrans, valor);
         this.saldo.setText("R$ " + String.valueOf(conta.getSaldo()));
         
-
-
     }//GEN-LAST:event_transferirActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

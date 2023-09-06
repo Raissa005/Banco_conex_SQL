@@ -61,7 +61,6 @@ public class Conta {
     }
 
     public void transferir(Conta destinatario, double valor) {
-
         this.saldo -= valor;
         destinatario.saldo += valor;
 

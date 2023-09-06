@@ -20,9 +20,7 @@ public class ContaController {
     }
 
     public Conta buscarContaPoTitular(String documento) {
-       
            return makeContaDao().buscarContaPorTitular(documento);
-         
     }
     
     public Conta buscarPorNumero(int numero) {
@@ -64,6 +62,6 @@ public class ContaController {
     }
     
     public Conta transacao(UUID id, Date, data, enum tipo, String valor, UUID id_conta){
-        
+
     }
 }
